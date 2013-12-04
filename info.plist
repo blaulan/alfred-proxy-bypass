@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>blaulan.bypass</string>
+	<key>connections</key>
+	<dict>
+		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8627F58F-FF94-4D61-A4B7-2BB7F2729365</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>8627F58F-FF94-4D61-A4B7-2BB7F2729365</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B4A89386-A4F3-47A3-A8B5-6593558C857B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Eric Wu</string>
+	<key>description</key>
+	<string>Modify Network Proxy Bypass.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Proxy Bypass</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>bypass</string>
+				<key>runningsubtext</key>
+				<string>Searching rules ...</string>
+				<key>script</key>
+				<string>python bypass.py search {query}</string>
+				<key>subtext</key>
+				<string>Enter "$rule" to search</string>
+				<key>title</key>
+				<string>Proxy Bypass</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>script</key>
+				<string>python bypass.py {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8627F58F-FF94-4D61-A4B7-2BB7F2729365</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Proxy Bypass</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>B4A89386-A4F3-47A3-A8B5-6593558C857B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
+		<dict>
+			<key>ypos</key>
+			<real>20</real>
+		</dict>
+		<key>8627F58F-FF94-4D61-A4B7-2BB7F2729365</key>
+		<dict>
+			<key>ypos</key>
+			<real>20</real>
+		</dict>
+		<key>B4A89386-A4F3-47A3-A8B5-6593558C857B</key>
+		<dict>
+			<key>ypos</key>
+			<real>20</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>blog.blaulan.com</string>
+</dict>
+</plist>
