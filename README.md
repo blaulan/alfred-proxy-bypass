@@ -1,4 +1,4 @@
-Alfred workflow to search and modify network proxy bypass list.
+Alfred workflow to search and modify network proxy bypass list. 
 
 ### Search (and remove) bypass list
 
@@ -7,3 +7,5 @@ Alfred workflow to search and modify network proxy bypass list.
 ### Add bypass rule
 
 > bypass + rule
+
+Yes, you have to enter your password everytime you modify network preference.
