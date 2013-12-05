@@ -154,8 +154,6 @@
 			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
-				<key>keyword</key>
-				<string>bypass update</string>
 				<key>subtext</key>
 				<string>Update bypass cache</string>
 				<key>text</key>

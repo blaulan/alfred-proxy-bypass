@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-05 13:34:13
+# @Last Modified time: 2013-12-05 17:22:23
 
 import os
 import sys
@@ -30,7 +30,11 @@ class bypass:
             "rm": self.bypassRemove,
         }
         self.bypassHellOn = False
-        self.bypassRead()
+        self.cache = False
+        if self.cache:
+            self.bypassRead()
+        else:
+            self.bypassUpdate()
 
     def bypassRead(self):
         try:
@@ -83,8 +87,9 @@ class bypass:
         output = subprocess.check_output(cmd)
         for item in output.split():
             self.bypassList.append(item)
-        with open("bypass", "w") as bypassFile:
-            bypassFile.write(output)
+        if self.cache:
+            with open("bypass", "w") as bypassFile:
+                bypassFile.write(output)
         return "Update bypass cache."
 
     def bypassSearch(self, rule):
@@ -107,6 +112,8 @@ class bypass:
             subtitle = "ADD ALL ITEMS"
         elif rule not in self.bypassList:
             subtitle = "ADD RULE"
+        if len(rule.split(".")) == 2:
+            rule = "%s+*.%s" % (rule, rule)
         return ([self.parse(0, action, rule, subtitle)] if subtitle else [])
 
     def parse(self, uid, action, title, subtitle):
@@ -123,7 +130,7 @@ class bypass:
     def run(self, cmd, rule):
         back = self.cmdList[cmd](rule)
         if cmd != "search" and back:
-            self.bypassSet()
+            #self.bypassSet()
             sys.stdout.write(back)
 
 
