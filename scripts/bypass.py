@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-05 12:21:38
+# @Last Modified time: 2013-12-05 12:32:11
 
 import os
 import sys
@@ -92,9 +92,11 @@ class bypass:
         return "Now You See Me."
 
     def showResult(self, rule, inList):
+        n = 1
         items = self.verifyDomain(rule)
         for item in inList:
-            items.append(self.parse("rm %s" % item, item, "REMOVE RULE"))
+            items.append(self.parse(n, "rm %s" % item, item, "REMOVE RULE"))
+            n += 1
         alfred.write(alfred.xml(items))
 
     def verifyDomain(self, rule):
@@ -108,12 +110,12 @@ class bypass:
             subtitle = "ADD ALL ITEMS"
         elif rule not in self.bypassList:
             subtitle = "ADD RULE"
-        return ([self.parse(action, rule, subtitle)] if subtitle else [])
+        return ([self.parse(0, action, rule, subtitle)] if subtitle else [])
 
-    def parse(self, action, title, subtitle):
+    def parse(self, uid, action, title, subtitle):
         return alfred.Item(
             attributes={
-                'uid': alfred.uid(title),
+                'uid': alfred.uid(uid),
                 'arg': action,
                 },
             title=title.replace("+", ", "),
