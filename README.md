@@ -19,3 +19,7 @@ The workflow won't verify any domain, so be prepared for errors if you enter the
 read [Mac OS X Proxy Bypass Hell](https://w3.owind.com/pub/mac-os-x-proxy-bypass-hell/) first.
 
 > bypass DOMAIN -a
+
+### Update cached rule list
+
+> bypass update

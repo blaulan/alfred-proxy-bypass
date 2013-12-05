@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-05 12:32:11
+# @Last Modified time: 2013-12-05 13:34:13
 
 import os
 import sys
@@ -85,6 +85,7 @@ class bypass:
             self.bypassList.append(item)
         with open("bypass", "w") as bypassFile:
             bypassFile.write(output)
+        return "Update bypass cache."
 
     def bypassSearch(self, rule):
         inList = [item for item in self.bypassList if rule in item]
@@ -102,10 +103,6 @@ class bypass:
     def verifyDomain(self, rule):
         subtitle = ""
         action = "add %s" % " ".join(sys.argv[2:])
-        #if "." not in rule:
-        #    action = ""
-        #    rule = "NOT A VALID DOMAIN."
-        #    subtitle = "PLEASE EDIT YOUR INPUT"
         if self.bypassHellOn:
             subtitle = "ADD ALL ITEMS"
         elif rule not in self.bypassList:
@@ -124,8 +121,6 @@ class bypass:
             )
 
     def run(self, cmd, rule):
-        if len(sys.argv) >= 4 and sys.argv[3] == "-a":
-            self.bypassHellOn = True
         back = self.cmdList[cmd](rule)
         if cmd != "search" and back:
             self.bypassSet()
@@ -133,5 +128,10 @@ class bypass:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 3:
-        bypass().run(sys.argv[1], sys.argv[2])
+    bp = bypass()
+    if sys.argv[1] == "update":
+        sys.stdout.write(bp.bypassUpdate())
+    else:
+        if len(sys.argv) == 4 and sys.argv[3] == "-a":
+            bp.bypassHellOn = True
+        bp.run(sys.argv[1], sys.argv[2])

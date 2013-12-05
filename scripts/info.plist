@@ -6,6 +6,17 @@
 	<string>blaulan.bypass</string>
 	<key>connections</key>
 	<dict>
+		<key>60382A54-601F-437A-8CA6-EE4108D8D37A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B4A89386-A4F3-47A3-A8B5-6593558C857B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
 		<array>
 			<dict>
@@ -28,11 +39,22 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>937FC798-6429-4879-B77C-CFA6869FCCF4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>60382A54-601F-437A-8CA6-EE4108D8D37A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Eric Wu</string>
 	<key>description</key>
-	<string>Modify Network Proxy Bypass.</string>
+	<string>Modify Network Proxy Bypass List.</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -53,7 +75,7 @@
 				<key>script</key>
 				<string>python bypass.py search {query}</string>
 				<key>subtext</key>
-				<string>Enter "$rule" to search</string>
+				<string>Search bypass rules</string>
 				<key>title</key>
 				<string>Proxy Bypass</string>
 				<key>type</key>
@@ -110,11 +132,54 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>python bypass.py update</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>60382A54-601F-437A-8CA6-EE4108D8D37A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>bypass update</string>
+				<key>subtext</key>
+				<string>Update bypass cache</string>
+				<key>text</key>
+				<string>Proxy Bypass</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>937FC798-6429-4879-B77C-CFA6869FCCF4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Latest version on https://github.com/blaulan/Alfred-Proxy-Bypass.</string>
 	<key>uidata</key>
 	<dict>
+		<key>60382A54-601F-437A-8CA6-EE4108D8D37A</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
 		<dict>
 			<key>ypos</key>
@@ -124,6 +189,11 @@
 		<dict>
 			<key>ypos</key>
 			<real>20</real>
+		</dict>
+		<key>937FC798-6429-4879-B77C-CFA6869FCCF4</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
 		</dict>
 		<key>B4A89386-A4F3-47A3-A8B5-6593558C857B</key>
 		<dict>
