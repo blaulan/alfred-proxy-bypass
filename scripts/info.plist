@@ -112,7 +112,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Latest version on https://github.com/blaulan/Alfred-Proxy-Bypass.</string>
 	<key>uidata</key>
 	<dict>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
@@ -132,6 +132,6 @@
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>blog.blaulan.com</string>
+	<string>https://github.com/blaulan/Alfred-Proxy-Bypass</string>
 </dict>
 </plist>

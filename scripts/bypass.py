@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-05 11:50:39
+# @Last Modified time: 2013-12-05 12:21:38
 
 import os
 import sys
@@ -61,20 +61,20 @@ class bypass:
                 self.bypassAdd(item)
             return "Add all items in '%s' to list." % domain
         else:
-            return "Abort."
+            return ""
 
     def bypassRemove(self, rule):
         if rule in self.bypassList:
             self.bypassList.remove(rule)
             return "Remove '%s' from list." % rule
         else:
-            return "Rule '%s' not exist." & rule
+            return ""
 
     def bypassSet(self):
         cmd = ["networksetup", "-setproxybypassdomains", self.deviceName]
         for item in self.bypassList:
             cmd.append(item)
-        subprocess.call(cmd)
+        output = subprocess.check_output(cmd)
         self.bypassUpdate()
 
     def bypassUpdate(self):
@@ -92,10 +92,9 @@ class bypass:
         return "Now You See Me."
 
     def showResult(self, rule, inList):
-        n = 1
         items = self.verifyDomain(rule)
         for item in inList:
-            items.append(self.parse(n, "rm %s" % item, item, "REMOVE RULE"))
+            items.append(self.parse("rm %s" % item, item, "REMOVE RULE"))
         alfred.write(alfred.xml(items))
 
     def verifyDomain(self, rule):
@@ -109,23 +108,24 @@ class bypass:
             subtitle = "ADD ALL ITEMS"
         elif rule not in self.bypassList:
             subtitle = "ADD RULE"
-        return ([self.parse(0, action, rule, subtitle)] if subtitle else [])
+        return ([self.parse(action, rule, subtitle)] if subtitle else [])
 
-    def parse(self, uid, action, title, subtitle):
+    def parse(self, action, title, subtitle):
         return alfred.Item(
             attributes={
-                'uid': alfred.uid(uid),
+                'uid': alfred.uid(title),
                 'arg': action,
                 },
             title=title.replace("+", ", "),
             subtitle=subtitle,
+            icon="icon.png",
             )
 
     def run(self, cmd, rule):
         if len(sys.argv) >= 4 and sys.argv[3] == "-a":
             self.bypassHellOn = True
         back = self.cmdList[cmd](rule)
-        if cmd != "search":
+        if cmd != "search" and back:
             self.bypassSet()
             sys.stdout.write(back)
 
