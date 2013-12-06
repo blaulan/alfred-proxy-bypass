@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-05 21:08:26
+# @Last Modified time: 2013-12-06 10:56:33
 
 import os
 import sys
@@ -64,7 +64,7 @@ class bypass:
         confirm = "osascript -e '{}'".format(applescript % output)
         if subprocess.check_output(confirm, shell=True).strip() == "Yes":
             for item in output.split():
-                if item == "*.": pass
+                if item == "*.": continue
                 self.bypassAdd(item)
             return "Add all items in '%s' to list." % domain
 
@@ -72,7 +72,7 @@ class bypass:
         items = self.verifyDomain(rule)
         inList = [item for item in self.bypassList if rule in item]
         for index, item in enumerate(inList):
-            items.append(self.parse(index, "rm %s" % item, item, "REMOVE RULE"))
+            items.append(self.parse(index+1, "rm %s" % item, item, "REMOVE RULE"))
         alfred.write(alfred.xml(items))
 
     def verifyDomain(self, domain):
