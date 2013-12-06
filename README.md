@@ -1,4 +1,6 @@
-Alfred workflow to search and modify network proxy bypass list. [GET LATEST VERSION](http://d.pr/f/iAPK)
+# [GET LATEST VERSION](http://d.pr/f/iAPK)
+
+Alfred workflow to search and modify network proxy bypass list. 
 
 The workflow won't verify any domain, so be prepared for errors if you type a wrong rule. And, you have to enter your password every time you modify network preference. 
 
