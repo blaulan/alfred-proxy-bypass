@@ -1,4 +1,4 @@
-## [GET LATEST VERSION](http://d.pr/f/iAPK)
+## [GET LATEST VERSION](https://dl.dropboxusercontent.com/u/24603822/Proxy%20Bypass.alfredworkflow)
 
 Alfred workflow to search and modify network proxy bypass list. 
 
