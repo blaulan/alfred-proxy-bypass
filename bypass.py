@@ -4,20 +4,35 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-06 10:56:33
+# @Last Modified time: 2013-12-07 10:37:59
 
 import os
 import sys
 import alfred
 import subprocess
 
-applescript = """
+
+def confirm(msg):
+    applescript = """
 set output to button returned of (display dialog ¬
 "%s" with title ¬
 "Are you fucking sure to add domains below to bypass?" buttons {"Yes", "No"} ¬
 default button 2 ¬
 with icon caution)
 do shell script "echo " & quoted form of output"""
+    cmd = "osascript -e '{}'".format(applescript % msg)
+    return subprocess.check_output(cmd, shell=True).strip() == "Yes"
+
+def parse(uid, action, title, subtitle):
+    return alfred.Item(
+        attributes={
+            'uid': alfred.uid(uid),
+            'arg': action,
+            },
+        title=title.replace("+", ", "),
+        subtitle=subtitle,
+        icon="icon.png",
+        )
 
 class bypass:
     def __init__(self):
@@ -61,8 +76,7 @@ class bypass:
     def bypassHell(self, domain):
         cmd = ["sh", "bypass.sh", domain]
         output = subprocess.check_output(cmd)
-        confirm = "osascript -e '{}'".format(applescript % output)
-        if subprocess.check_output(confirm, shell=True).strip() == "Yes":
+        if confirm(output):
             for item in output.split():
                 if item == "*.": continue
                 self.bypassAdd(item)
@@ -72,7 +86,7 @@ class bypass:
         items = self.verifyDomain(rule)
         inList = [item for item in self.bypassList if rule in item]
         for index, item in enumerate(inList):
-            items.append(self.parse(index+1, "rm %s" % item, item, "REMOVE RULE"))
+            items.append(parse(index+1, "rm %s" % item, item, "REMOVE RULE"))
         alfred.write(alfred.xml(items))
 
     def verifyDomain(self, domain):
@@ -86,29 +100,17 @@ class bypass:
             if len(domain.split(".")) == 2:
                 domain = "{0}, *.{0}".format(domain)
                 action = "add %s" % domain.replace(", ", "+")
-        return ([self.parse(0, action, domain, subtitle)] if subtitle else [])
+        return ([parse(0, action, domain, subtitle)] if subtitle else [])
 
-    def parse(self, uid, action, title, subtitle):
-        return alfred.Item(
-            attributes={
-                'uid': alfred.uid(uid),
-                'arg': action,
-                },
-            title=title.replace("+", ", "),
-            subtitle=subtitle,
-            icon="icon.png",
-            )
-
-    def run(self):
-        config = sys.argv[1:]
-        if "-a" in config:
-            self.bypassHellOn = True
-            config.remove("-a")
-        cmd, rule = config[0], config[1]
-        callback = self.cmdList[cmd](rule)
-        if callback:
-            self.bypassSet()
-            sys.stdout.write(callback)
 
 if __name__ == '__main__':
-    bypass().run()
+    bp = bypass()
+    config = sys.argv[1:]
+    if "-a" in config:
+        bp.bypassHellOn = True
+        config.remove("-a")
+    cmd, rule = config[0], config[1]
+    callback = bp.cmdList[cmd](rule)
+    if callback:
+        bp.bypassSet()
+        sys.stdout.write(callback)
