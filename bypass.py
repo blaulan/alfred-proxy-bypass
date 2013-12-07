@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-07 10:37:59
+# @Last Modified time: 2013-12-07 18:58:49
 
 import os
 import sys
@@ -78,16 +78,22 @@ class bypass:
         output = subprocess.check_output(cmd)
         if confirm(output):
             for item in output.split():
-                if item == "*.": continue
+                if item == "*.":
+                    continue
                 self.bypassAdd(item)
             return "Add all items in '%s' to list." % domain
+
+    def bypassShow(self, inList, items=None):
+        if items is None:
+            items = []
+        for index, item in enumerate(inList):
+            items.append(parse(index+1, "rm %s" % item, item, "REMOVE RULE"))
+        alfred.write(alfred.xml(items))
 
     def bypassSearch(self, rule):
         items = self.verifyDomain(rule)
         inList = [item for item in self.bypassList if rule in item]
-        for index, item in enumerate(inList):
-            items.append(parse(index+1, "rm %s" % item, item, "REMOVE RULE"))
-        alfred.write(alfred.xml(items))
+        self.bypassShow(inList, items)
 
     def verifyDomain(self, domain):
         subtitle = ""
@@ -105,12 +111,14 @@ class bypass:
 
 if __name__ == '__main__':
     bp = bypass()
+    if len(sys.argv) == 2:
+        bp.bypassShow(bp.bypassList[-10:-1])
+        sys.exit()
     config = sys.argv[1:]
     if "-a" in config:
         bp.bypassHellOn = True
         config.remove("-a")
-    cmd, rule = config[0], config[1]
-    callback = bp.cmdList[cmd](rule)
+    callback = bp.cmdList[config[0]](config[1])
     if callback:
         bp.bypassSet()
         sys.stdout.write(callback)
