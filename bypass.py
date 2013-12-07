@@ -4,9 +4,8 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-07 18:58:49
+# @Last Modified time: 2013-12-07 19:02:50
 
-import os
 import sys
 import alfred
 import subprocess
