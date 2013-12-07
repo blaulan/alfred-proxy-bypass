@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-07 19:14:05
+# @Last Modified time: 2013-12-07 19:25:25
 
 import sys
 import alfred
@@ -111,7 +111,7 @@ class bypass:
 if __name__ == '__main__':
     bp = bypass()
     if len(sys.argv) == 2:
-        bp.bypassShow(bp.bypassList[-9:-1])
+        bp.bypassShow(reversed(bp.bypassList[-9:]))
         sys.exit()
     config = sys.argv[1:]
     if "-a" in config:
