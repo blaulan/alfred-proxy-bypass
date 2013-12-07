@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>blaulan.bypass</string>
+	<string>com.blaulan.bypass</string>
 	<key>connections</key>
 	<dict>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
@@ -112,7 +112,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Latest version on https://github.com/blaulan/Alfred-Proxy-Bypass.</string>
+	<string>Latest version on https://dl.dropboxusercontent.com/u/24603822/Proxy%20Bypass.alfredworkflow.</string>
 	<key>uidata</key>
 	<dict>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
