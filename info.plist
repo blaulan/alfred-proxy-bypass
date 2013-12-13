@@ -6,11 +6,33 @@
 	<string>com.blaulan.bypass</string>
 	<key>connections</key>
 	<dict>
+		<key>416737A4-866F-461C-BF31-A6476D6348A5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>81263096-D5D9-4BFC-8939-C0EE300E3A1E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>8627F58F-FF94-4D61-A4B7-2BB7F2729365</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>81263096-D5D9-4BFC-8939-C0EE300E3A1E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B4A89386-A4F3-47A3-A8B5-6593558C857B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -110,15 +132,73 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>subtext</key>
+				<string>Toggle Web Proxy and Secure Web Proxy</string>
+				<key>text</key>
+				<string>Toggle Proxy</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>416737A4-866F-461C-BF31-A6476D6348A5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>#!/bin/sh
+
+DEVICE=Wi-Fi
+
+if [ "`networksetup -getwebproxy $DEVICE | grep -E "^Enabled: Yes"`" ]; then
+	ACTION=off
+else
+	ACTION=on
+fi
+
+networksetup -setwebproxystate $DEVICE $ACTION &gt;/dev/null
+networksetup -setsecurewebproxystate $DEVICE $ACTION &gt;/dev/null
+echo "turned proxy $ACTION"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>81263096-D5D9-4BFC-8939-C0EE300E3A1E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Latest version on https://dl.dropboxusercontent.com/u/24603822/Proxy%20Bypass.alfredworkflow.</string>
 	<key>uidata</key>
 	<dict>
+		<key>416737A4-866F-461C-BF31-A6476D6348A5</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
 		<key>7FF0E4B4-F385-481B-B0A3-A788FA64E0CC</key>
 		<dict>
 			<key>ypos</key>
 			<real>20</real>
+		</dict>
+		<key>81263096-D5D9-4BFC-8939-C0EE300E3A1E</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
 		</dict>
 		<key>8627F58F-FF94-4D61-A4B7-2BB7F2729365</key>
 		<dict>
