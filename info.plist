@@ -137,6 +137,8 @@
 			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
+				<key>keyword</key>
+				<string>toggle</string>
 				<key>subtext</key>
 				<string>Toggle Web Proxy and Secure Web Proxy</string>
 				<key>text</key>

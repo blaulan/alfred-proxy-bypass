@@ -16,6 +16,10 @@ The workflow won't verify any domain, so be prepared for errors if you type a wr
 
 > bypass RULE
 
+### Batch add
+
+> bypass RULE1+RULE2+...
+
 ### Hell mode
 
 Read [Mac OS X Proxy Bypass Hell](https://w3.owind.com/pub/mac-os-x-proxy-bypass-hell/) first.

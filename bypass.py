@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-07 19:25:25
+# @Last Modified time: 2013-12-15 11:20:08
 
 import sys
 import alfred
@@ -95,17 +95,21 @@ class bypass:
         self.bypassShow(inList, items)
 
     def verifyDomain(self, domain):
-        subtitle = ""
-        action = "add %s" % domain
         if self.bypassHellOn:
+            title = domain
             subtitle = "ADD ALL ITEMS"
-            action = "add %s -a" % domain
-        elif domain not in self.bypassList:
+            action = "add %s -a" % title
+        else:
+            title = ""
             subtitle = "ADD RULE"
-            if len(domain.split(".")) == 2:
-                domain = "{0}, *.{0}".format(domain)
-                action = "add %s" % domain.replace(", ", "+")
-        return ([parse(0, action, domain, subtitle)] if subtitle else [])
+            for item in domain.split("+"):
+                if item not in self.bypassList:
+                    title += "+%s" % item
+                    if len(item.split(".")) == 2:
+                        title += "+*.%s" % item
+            title = title[1:]
+            action = "add %s" % title
+        return ([parse(0, action, title, subtitle)] if title else [])
 
 
 if __name__ == '__main__':
