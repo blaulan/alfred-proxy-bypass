@@ -4,7 +4,7 @@
 # @Date:   2013-12-04 15:24:56
 # @Email:  me@blaulan.com
 # @Last modified by:   Eric Wu
-# @Last Modified time: 2013-12-15 11:20:08
+# @Last Modified time: 2013-12-27 17:18:14
 
 import sys
 import alfred
@@ -22,6 +22,7 @@ do shell script "echo " & quoted form of output"""
     cmd = "osascript -e '{}'".format(applescript % msg)
     return subprocess.check_output(cmd, shell=True).strip() == "Yes"
 
+
 def parse(uid, action, title, subtitle):
     return alfred.Item(
         attributes={
@@ -32,6 +33,7 @@ def parse(uid, action, title, subtitle):
         subtitle=subtitle,
         icon="icon.png",
         )
+
 
 class bypass:
     def __init__(self):
@@ -53,7 +55,7 @@ class bypass:
 
     def bypassSet(self):
         cmd = ["networksetup", "-setproxybypassdomains", self.deviceName]
-        output = subprocess.check_output(cmd+self.bypassList)
+        subprocess.check_output(cmd+self.bypassList)
 
     def bypassAdd(self, rule):
         if rule not in self.bypassList:
